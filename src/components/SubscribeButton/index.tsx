@@ -7,10 +7,6 @@ interface SubscribeButtonProps {
   priceId: string;
 }
 
-interface SessionId {
-    sessionId: string;
-}
-
 export function SubscribeButton({ priceId }: SubscribeButtonProps) {
   const { data: session } = useSession();
 
@@ -24,7 +20,6 @@ export function SubscribeButton({ priceId }: SubscribeButtonProps) {
         const response = await api.post('/subscribe');
         console.log(response);
         const { sessionId } = response.data;
-        console.log("sessionId: " + {sessionId});
 
         const stripe = await getStripeJs();
 
