@@ -13,7 +13,7 @@ async function buffer(readable: Readable) {
     )
   }
 
-  return Buffer.concat(chunks)
+  return Buffer.concat(chunks);
 }
 
 export const config = {
@@ -30,7 +30,7 @@ const relevantEvents = new Set([
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
-    const buf = await buffer(req)
+    const buf = await buffer(req);
     const secret = req.headers['stripe-signature'];
 
     let event: Stripe.Event;
@@ -78,7 +78,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       }
     }
 
-    res.json({ received: true })
+    res.json({ received: true });
   } else {
     res.setHeader('Allow', 'POST')
     res.status(405).end('Method Not Allowed')

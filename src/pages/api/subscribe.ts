@@ -32,7 +32,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
       const stripeCustomer = await stripe.customers.create({
         email: session.user.email,
         //metadata
-      })
+      });
 
       await fauna.query(
         q.Update(
@@ -43,7 +43,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
             }
           }
         )
-      )
+      );
 
       customerId = stripeCustomer.id;
     };
@@ -68,5 +68,5 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
   } else {
     response.setHeader('Allow', 'POST');
     response.status(405).end('Method not allowed');
-  }
+  };
 };
